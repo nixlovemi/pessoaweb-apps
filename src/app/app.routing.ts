@@ -12,14 +12,21 @@ export const routes: Routes = [{
   path: '',
   component: LeftNavTemplateComponent,
   data: {
-    title: 'Angular Admin Template'
+    title: 'PessoaWeb'
   },
   children: [
     {
       path: 'dashboard',
       loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
       data: {
-        title: 'Dashboard Page'
+        title: 'Dashboard'
+      },
+    },
+    {
+      path: 'fechamento',
+      loadChildren: () => import('./fechamento/fechamento.module').then(m => m.FechamentoModule),
+      data: {
+        title: 'Lançar Fechamento'
       },
     },
     {

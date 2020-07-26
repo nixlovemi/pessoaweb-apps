@@ -4,7 +4,7 @@
 /**************************************/
 
 .headerwrapper {
-    background-color: #1f6b9e;
+    background-color: #58585b;
     min-height: 60px;
     width: 100%;
     z-index: 1000;
@@ -22,8 +22,6 @@
     float: right;
 }
 
-a.btn.btn-social-icon.btn-github {
-    color: #fff;
-    border: 1px solid #fff;
-    margin: 10px;
+.profile-img {
+    background-color: white;
 }
