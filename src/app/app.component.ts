@@ -1,15 +1,15 @@
 import {Component} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {Router, ActivatedRoute, NavigationEnd, Event} from '@angular/router';
-import {APP_BASE_HREF} from '@angular/common';
+/*import {APP_BASE_HREF} from '@angular/common';*/
 
 declare var jQuery: any;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  providers: [{provide: APP_BASE_HREF, useValue: '/pessoaweb/'}]
+  styleUrls: ['./app.component.scss']/*,
+  providers: [{provide: APP_BASE_HREF, useValue: '/pessoaweb/'}]*/
 })
 
 
