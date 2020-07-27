@@ -3,8 +3,7 @@
     <div class="row row-stat">
       <div class="col-sm-12">
         <h2 class="h2" style="padding-top:20px">Fechamento Inverno 2020</h2>
-        <form>
-
+        <form name="frmFechamento">
           <div class="panel panel-default">
             <div class="panel-heading panel-heading-divider">
               Cultivar
@@ -12,7 +11,7 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="form-control-1">Cultivar</label>
-                    <select id="form-control-1" class="custom-select">
+                    <select name="cultivar" id="form-control-1" class="custom-select" [(ngModel)]="formData.cultivar">
                       <option value="1">Agrisure TG (GA 21)</option>
                       <option value="2">RR2 (NK 603)</option>
                       <option value="3">Agrisure TL (Bt 11)</option>
@@ -24,7 +23,7 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="form-control-2">Nível</label>
-                    <select id="form-control-2" class="custom-select">
+                    <select name="nivel" id="form-control-2" class="custom-select" [(ngModel)]="formData.nivel">
                       <option value="1">Nível I</option>
                       <option value="2">Nível II</option>
                       <option value="3">Nível III</option>
@@ -43,7 +42,7 @@
                       <div class="col-sm-12">
                         <div class="form-group switches-stacked">
                           <label class="switch switch-primary">
-                            <input type="checkbox" name="switches" class="s-input" checked="checked">
+                            <input name="venda_giro" type="checkbox" name="switches" class="s-input" checked="checked" [(ngModel)]="formData.venda_giro">
                             <span class="s-content">
                               <span class="s-track"></span>
                               <span class="s-handle"></span>
@@ -54,11 +53,11 @@
                       </div>
                     </div>
                     <div class="estados">
-                      <div class="row linha-estado">
+                      <div class="row linha-estado" *ngFor="let item of arrEstados; let i = index">
                         <div class="col-sm-6">
                           <div class="form-group">
                             <label for="form-control-4">Estado</label>
-                            <select id="form-control-4" class="custom-select">
+                            <select name="estado" id="form-control-4" class="custom-select" [(ngModel)]="arrEstados[i].estado">
                               <option value="1">São Paulo</option>
                               <option value="2">Minas Gerais</option>
                               <option value="3">Rio de Janeiro</option>
@@ -69,18 +68,18 @@
                         <div class="col-sm-2">
                           <div class="form-group">
                             <label for="form-control-5">Venda <small class="text-muted">(sc)</small></label>
-                            <input id="form-control-5" class="form-control" type="text">
+                            <input name="venda" id="form-control-5" class="form-control" type="text" [(ngModel)]="arrEstados[i].venda">
                           </div>
                         </div>
                         <div class="col-sm-2">
                           <div class="form-group">
                             <label for="form-control-6">Ciclo <small class="text-muted">(sc)</small></label>
-                            <input id="form-control-6" class="form-control" type="text">
+                            <input name="ciclo" id="form-control-6" class="form-control" type="text" [(ngModel)]="arrEstados[i].ciclo">
                           </div>
                         </div>
                         <div class="col-sm-1">
                           <label for="form-control-6" data-toggle="tooltip" data-placement="top" title="Apagar linha"><span class="badge badge-pill badge-secondary">i</span></label><br>
-                          <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Apagar linha"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                          <button (click)="apagaLinha(i)" type="button" class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Apagar linha"><i class="fa fa-trash" aria-hidden="true"></i></button>
                         </div>
                       </div>
                       <div class="row">
@@ -96,7 +95,7 @@
           </div>
           <div class="row">
             <div class="col-sm-12 text-right">
-              <button type="button" class="btn btn-primary">Adicionar Cultivar</button>
+              <button (click)="adicionarCultivar()" type="button" class="btn btn-primary">Adicionar Cultivar</button>
             </div>
           </div>
         </form>
