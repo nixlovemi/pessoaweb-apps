@@ -17,5 +17,8 @@ export class FechamentoComponent implements OnInit {
     this.pageData = <any>this.route.snapshot.data;
     console.log(this.pageData.title)
   }
+  adicionaEstado() {
+    alert('oi');
+  }
 
 }
