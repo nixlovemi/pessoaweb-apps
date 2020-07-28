@@ -57,7 +57,7 @@
                         <div class="col-sm-6">
                           <div class="form-group">
                             <label for="form-control-4">Estado</label>
-                            <select name="estado" id="form-control-4" class="custom-select" [(ngModel)]="arrEstados[i].estado">
+                            <select [ngModelOptions]="{standalone: true}" class="custom-select" [(ngModel)]="arrEstados[i].estado">
                               <option value="1">São Paulo</option>
                               <option value="2">Minas Gerais</option>
                               <option value="3">Rio de Janeiro</option>
@@ -68,13 +68,13 @@
                         <div class="col-sm-2">
                           <div class="form-group">
                             <label for="form-control-5">Venda <small class="text-muted">(sc)</small></label>
-                            <input name="venda" id="form-control-5" class="form-control" type="text" [(ngModel)]="arrEstados[i].venda">
+                            <input [ngModelOptions]="{standalone: true}" class="form-control" type="text" [(ngModel)]="arrEstados[i].venda">
                           </div>
                         </div>
                         <div class="col-sm-2">
                           <div class="form-group">
                             <label for="form-control-6">Ciclo <small class="text-muted">(sc)</small></label>
-                            <input name="ciclo" id="form-control-6" class="form-control" type="text" [(ngModel)]="arrEstados[i].ciclo">
+                            <input [ngModelOptions]="{standalone: true}" class="form-control" type="text" [(ngModel)]="arrEstados[i].ciclo">
                           </div>
                         </div>
                         <div class="col-sm-1">

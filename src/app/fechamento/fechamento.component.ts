@@ -1,5 +1,5 @@
 import {Router, ActivatedRoute} from '@angular/router';
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-fechamento',
@@ -40,7 +40,7 @@ export class FechamentoComponent implements OnInit {
     );
   }
 
-  apagaLinha(idx) {
+  apagaLinha(idx: number) {
     if (this.arrEstados.length === 1) {
       this.arrEstados[0] = {
         estado: null,
