@@ -33,9 +33,7 @@ export class FechamentoComponent implements OnInit {
   adicionaEstado() {
     this.arrEstados.push(
       {
-        estado: null,
-        venda: null,
-        ciclo: null
+        
       }
     );
   }
