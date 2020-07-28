@@ -28,30 +28,30 @@ li.user-pro a:hover span, li.user-pro a:hover small {
 }
 
 .panel.panel-light {
-    background: #8893a4;
+    background: #58585b;
     color: #fff;
 }
 
 .panel.panel-light .panel-icon .fa {
-    color: #8893a4;
+    color: #58585b;
 }
 
 .panel.panel-dark {
-    background: #5c6270;
+    background: #00a6b6;
     color: #fff;
 }
 
 .panel.panel-dark .panel-icon .fa {
-    color: #5c6270;
+    color: #00a6b6;
 }
 
 .panel.panel-darkest {
-    background: #333333;
+    background: #8cbf36;
     color: #fff;
 }
 
 .panel.panel-darkest .panel-icon .fa {
-    color: #333;
+    color: #8cbf36;
 }
 /*Panel */
 .panel.panel-default {

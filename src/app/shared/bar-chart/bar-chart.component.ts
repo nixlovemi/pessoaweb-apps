@@ -12,20 +12,17 @@ export class BarChartComponent implements OnInit {
     responsive: true
   };
   public barChartLabels: string[] = [
-    "2006",
-    "2007",
-    "2008",
-    "2009",
-    "2010",
-    "2011",
-    "2012"
+    "2020",
+    "2019",
+    "2018",
+    "2017"
   ];
   public barChartType: string = "bar";
   public barChartLegend: boolean = true;
 
   public barChartData: any[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: "Series A" },
-    { data: [28, 48, 40, 19, 86, 27, 90], label: "Series B" }
+    { data: [47125633, 55180792, 49887366, 52396664], label: "Giro" },
+    { data: [48343457, 58476152, 54761287, 53033598], label: "Venda" }
   ];
 
   // events
