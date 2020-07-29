@@ -1,6 +1,42 @@
 import {Router, ActivatedRoute} from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
+class Estados {
+  public estado: number = null;
+  public venda: number = null;
+  public ciclo: number = null;
+}
+class Cultivar {
+  public cultivar: number = null;
+  public nivel: number = null;
+  public venda_giro = true;
+  public estados: Estados[] = [];
+
+  constructor() {
+    this.estados.push(
+      new Estados()
+    );
+  }
+  pegaTotal() {
+    let total = 0;
+
+    for (let i = 0; i < this.estados.length; i++ ) {
+      const Estado = this.estados[i];
+      const venda = Estado.venda;
+      const giro = Estado.ciclo;
+
+      if (venda > 0) {
+        total += Number(venda);
+      }
+      if (giro > 0) {
+        total += Number(giro);
+      }
+    }
+
+    return total;
+  }
+}
+
 @Component({
   selector: 'app-fechamento',
   templateUrl: './fechamento.component.html',
@@ -8,20 +44,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FechamentoComponent implements OnInit {
   public pageData: any;
-  public formData = {
-    cultivar: null,
-    nivel: null,
-    venda_giro: true,
-  };
-  public arrEstados = [];
+  public formData: Cultivar[] = [];
 
   constructor(router: Router, private route: ActivatedRoute) {
-    this.arrEstados.push(
-      {
-        estado: null,
-        venda: null,
-        ciclo: null
-      }
+    this.formData.push(
+      new Cultivar()
     );
   }
 
@@ -30,28 +57,33 @@ export class FechamentoComponent implements OnInit {
     console.log(this.pageData.title)
   }
 
-  adicionaEstado() {
-    this.arrEstados.push(
-      {
-        
-      }
+  adicionaEstado(idxCultivar: number) {
+    this.formData[idxCultivar].estados.push(
+      new Estados()
     );
   }
 
-  apagaLinha(idx: number) {
-    if (this.arrEstados.length === 1) {
-      this.arrEstados[0] = {
-        estado: null,
-        venda: null,
-        ciclo: null
-      };
+  apagaLinha(idxCultivar: number, idxEstado: number) {
+    if (this.formData[idxCultivar].estados.length === 1) {
+      this.formData[idxCultivar].estados[0] = new Estados();
     } else {
-      this.arrEstados.splice(idx, 1);
+      this.formData[idxCultivar].estados.splice(idxEstado, 1);
+    }
+  }
+
+  deletaCultivar(idxCultivar: number) {
+    if (this.formData.length === 1) {
+      this.formData[idxCultivar] = new Cultivar();
+    } else {
+      this.formData.splice(idxCultivar, 1);
     }
   }
 
   adicionarCultivar() {
-    console.log(this.formData, this.arrEstados);
+    this.formData.push(
+      new Cultivar()
+    );
+    // console.log(this.formData);
   }
 
 }
