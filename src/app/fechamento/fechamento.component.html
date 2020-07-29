@@ -20,7 +20,7 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                   <div class="form-group">
                     <label for="form-control-2">Nível</label>
                     <select name="nivel" id="form-control-2" class="custom-select" [(ngModel)]="formData.nivel">
@@ -30,7 +30,10 @@
                     </select>
                   </div>
                 </div>
-                
+                <div class="col-sm-1 text-right">
+                  <label for="form-control-2">Total</label>
+                  <h3>123</h3>
+                </div>
               </div>
             </div>
 
@@ -52,11 +55,24 @@
                         </div>
                       </div>
                     </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <label for="form-control-4">Estado</label>
+                      </div>
+                      <div class="col-sm-2">
+                        <label for="form-control-5">Venda <small class="text-muted">(sc)</small></label>
+                      </div>
+                      <div class="col-sm-2">
+                        <label for="form-control-6">Ciclo <small class="text-muted">(sc)</small></label>
+                      </div>
+                      <div class="col-sm-2">
+                        <span class="badge badge-pill badge-secondary" data-toggle="tooltip" data-placement="top" title="Apagar linha">i</span>
+                      </div>
+                    </div>
                     <div class="estados">
                       <div class="row linha-estado" *ngFor="let item of arrEstados; let i = index">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <label for="form-control-4">Estado</label>
                             <select [ngModelOptions]="{standalone: true}" class="custom-select" [(ngModel)]="arrEstados[i].estado">
                               <option value="1">São Paulo</option>
                               <option value="2">Minas Gerais</option>
@@ -67,24 +83,21 @@
                         </div>
                         <div class="col-sm-2">
                           <div class="form-group">
-                            <label for="form-control-5">Venda <small class="text-muted">(sc)</small></label>
-                            <input [ngModelOptions]="{standalone: true}" class="form-control" type="text" [(ngModel)]="arrEstados[i].venda">
+                            <input [ngModelOptions]="{standalone: true}" name="venda" id="form-control-5" class="form-control" type="text" [(ngModel)]="arrEstados[i].venda">
                           </div>
                         </div>
                         <div class="col-sm-2">
                           <div class="form-group">
-                            <label for="form-control-6">Ciclo <small class="text-muted">(sc)</small></label>
-                            <input [ngModelOptions]="{standalone: true}" class="form-control" type="text" [(ngModel)]="arrEstados[i].ciclo">
+                            <input [ngModelOptions]="{standalone: true}" name="ciclo" id="form-control-6" class="form-control" type="text" [(ngModel)]="arrEstados[i].ciclo">
                           </div>
                         </div>
-                        <div class="col-sm-1">
-                          <label for="form-control-6" data-toggle="tooltip" data-placement="top" title="Apagar linha"><span class="badge badge-pill badge-secondary">i</span></label><br>
+                        <div class="col-sm-2">
                           <button (click)="apagaLinha(i)" type="button" class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Apagar linha"><i class="fa fa-trash" aria-hidden="true"></i></button>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-sm-12">
-                          <button type="button" class="btn btn-outline-primary btn-block" (click)="adicionaEstado()">Adicionar Estado</button>
+                          <button type="button" class="btn btn-outline-primary" (click)="adicionaEstado()">Adicionar Estado</button>
                         </div>
                       </div>
                     </div>
@@ -96,6 +109,133 @@
           <div class="row">
             <div class="col-sm-12 text-right">
               <button (click)="adicionarCultivar()" type="button" class="btn btn-primary">Adicionar Cultivar</button>
+            </div>
+          </div>
+          <div class="row mt-4">
+            <div class="col-sm-6">
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Região</th>
+                      <th>Super Precoce<br><small>Híbrido</small></th>
+                      <th>Precoce<br><small>Híbrido</small></th>
+                      <th>Normal<br><small>Híbrido</small></th>
+                      <th>Milho Variedade</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Suldeste</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>Sul</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>Centroeste</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>Nordeste</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>Norte</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>Exortação</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Região</th>
+                      <th>Duplo<br><small>Híbrido</small></th>
+                      <th>Triplo<br><small>Híbrido</small></th>
+                      <th>Simples<br><small>Híbrido</small></th>
+                      <th>Simples Modificado<br><small>Híbrido</small></th>
+                      <th>Milho Variedade</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Suldeste</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>Sul</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>Centroeste</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>Nordeste</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>Norte</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                    <tr>
+                      <td>Exortação</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </form>
