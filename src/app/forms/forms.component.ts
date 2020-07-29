@@ -1,6 +1,7 @@
 import {Router, ActivatedRoute} from '@angular/router';
 import {Component, OnInit} from '@angular/core';
 
+
 @Component({
   selector: 'app-forms',
   templateUrl: './forms.component.html',
@@ -17,5 +18,6 @@ export class FormsComponent implements OnInit {
     this.pageData = <any>this.route.snapshot.data;
     console.log(this.pageData.title)
   }
+  
 
 }

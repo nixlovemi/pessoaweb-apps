@@ -25,6 +25,19 @@ export class BarChartComponent implements OnInit {
     { data: [48343457, 58476152, 54761287, 53033598], label: "Venda" }
   ];
 
+  public barChartColor:Array<any> = [
+    { // grey
+      backgroundColor: '#8cbf36',
+      borderColor: '#8cbf36'
+    },
+    { // dark grey
+      backgroundColor: '#00a6b6',
+      borderColor: '#00a6b6)'
+    }
+  ];
+
+
+
   // events
   public chartClicked(e: any): void {
     console.log(e);
