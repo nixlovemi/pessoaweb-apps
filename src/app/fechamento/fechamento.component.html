@@ -31,8 +31,8 @@
                   </div>
                 </div>
                 <div class="col-sm-1 text-right">
-                  <label for="form-control-2">Total</label>
-                  <h3>{{ formData[i].pegaTotal() }}</h3>
+                  <label for="form-control-2">Total (venda/ciclo)</label>
+                  <h3>{{ formData[i].pegaTotal().venda }} / {{ formData[i].pegaTotal().ciclo }}</h3>
                 </div>
               </div>
             </div>
@@ -83,12 +83,12 @@
                         </div>
                         <div class="col-sm-2">
                           <div class="form-group">
-                            <input name="venda" id="form-control-5" class="form-control" type="text"[(ngModel)]="formData[i].estados[ii].venda" [ngModelOptions]="{standalone: true}">
+                            <input name="venda" id="form-control-5" class="form-control" type="text" [(ngModel)]="formData[i].estados[ii].venda" [ngModelOptions]="{standalone: true}">
                           </div>
                         </div>
                         <div class="col-sm-2">
                           <div class="form-group">
-                            <input name="ciclo" id="form-control-6" class="form-control" type="text"[(ngModel)]="formData[i].estados[ii].ciclo" [ngModelOptions]="{standalone: true}">
+                            <input name="ciclo" id="form-control-6" class="form-control" type="text" [(ngModel)]="formData[i].estados[ii].ciclo" [ngModelOptions]="{standalone: true}">
                           </div>
                         </div>
                         <div class="col-sm-2">
@@ -111,134 +111,134 @@
               <button (click)="adicionarCultivar()" type="button" class="btn btn-primary">Adicionar Cultivar</button>
             </div>
           </div>
-          <div class="row mt-4">
-            <div class="col-sm-6">
-              <div class="table-responsive">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>Região</th>
-                      <th>Super Precoce<br><small>Híbrido</small></th>
-                      <th>Precoce<br><small>Híbrido</small></th>
-                      <th>Normal<br><small>Híbrido</small></th>
-                      <th>Milho Variedade</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Suldeste</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                    </tr>
-                    <tr>
-                      <td>Sul</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                    </tr>
-                    <tr>
-                      <td>Centroeste</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                    </tr>
-                    <tr>
-                      <td>Nordeste</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                    </tr>
-                    <tr>
-                      <td>Norte</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                    </tr>
-                    <tr>
-                      <td>Exortação</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="table-responsive">
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th>Região</th>
-                      <th>Duplo<br><small>Híbrido</small></th>
-                      <th>Triplo<br><small>Híbrido</small></th>
-                      <th>Simples<br><small>Híbrido</small></th>
-                      <th>Simples Modificado<br><small>Híbrido</small></th>
-                      <th>Milho Variedade</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>Suldeste</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                    </tr>
-                    <tr>
-                      <td>Sul</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                    </tr>
-                    <tr>
-                      <td>Centroeste</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                    </tr>
-                    <tr>
-                      <td>Nordeste</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                    </tr>
-                    <tr>
-                      <td>Norte</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                    </tr>
-                    <tr>
-                      <td>Exortação</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                      <td>0</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+        </form>
+        <div class="row mt-4" *ngFor="let total of pegaTotalEstado();">
+          <div class="col-sm-6">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Região</th>
+                    <th>Super Precoce<br><small>Híbrido</small></th>
+                    <th>Precoce<br><small>Híbrido</small></th>
+                    <th>Normal<br><small>Híbrido</small></th>
+                    <th>Milho Variedade</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Sudeste</td>
+                    <td>{{ total.totalEstados.sudeste.super_precoce.venda }} / {{ total.totalEstados.sudeste.super_precoce.ciclo }}</td>
+                    <td>{{ total.totalEstados.sudeste.precoce.venda }} / {{ total.totalEstados.sudeste.precoce.ciclo }}</td>
+                    <td>{{ total.totalEstados.sudeste.normal.venda }} / {{ total.totalEstados.sudeste.normal.ciclo }}</td>
+                    <td>{{ total.totalEstados.sudeste.milho_variedade.venda }} / {{ total.totalEstados.sudeste.milho_variedade.ciclo }}</td>
+                  </tr>
+                  <tr>
+                    <td>Sul</td>
+                    <td>{{ total.totalEstados.sul.super_precoce.venda }} / {{ total.totalEstados.sul.super_precoce.ciclo }}</td>
+                    <td>{{ total.totalEstados.sul.precoce.venda }} / {{ total.totalEstados.sul.precoce.ciclo }}</td>
+                    <td>{{ total.totalEstados.sul.normal.venda }} / {{ total.totalEstados.sul.normal.ciclo }}</td>
+                    <td>{{ total.totalEstados.sul.milho_variedade.venda }} / {{ total.totalEstados.sul.milho_variedade.ciclo }}</td>
+                  </tr>
+                  <tr>
+                    <td>Centroeste</td>
+                    <td>{{ total.totalEstados.centro_oeste.super_precoce.venda }} / {{ total.totalEstados.centro_oeste.super_precoce.ciclo }}</td>
+                    <td>{{ total.totalEstados.centro_oeste.precoce.venda }} / {{ total.totalEstados.centro_oeste.precoce.ciclo }}</td>
+                    <td>{{ total.totalEstados.centro_oeste.normal.venda }} / {{ total.totalEstados.centro_oeste.normal.ciclo }}</td>
+                    <td>{{ total.totalEstados.centro_oeste.milho_variedade.venda }} / {{ total.totalEstados.centro_oeste.milho_variedade.ciclo }}</td>
+                  </tr>
+                  <tr>
+                    <td>Nordeste</td>
+                    <td>{{ total.totalEstados.nordeste.super_precoce.venda }} / {{ total.totalEstados.nordeste.super_precoce.ciclo }}</td>
+                    <td>{{ total.totalEstados.nordeste.precoce.venda }} / {{ total.totalEstados.nordeste.precoce.ciclo }}</td>
+                    <td>{{ total.totalEstados.nordeste.normal.venda }} / {{ total.totalEstados.nordeste.normal.ciclo }}</td>
+                    <td>{{ total.totalEstados.nordeste.milho_variedade.venda }} / {{ total.totalEstados.nordeste.milho_variedade.ciclo }}</td>
+                  </tr>
+                  <tr>
+                    <td>Norte</td>
+                    <td>{{ total.totalEstados.norte.super_precoce.venda }} / {{ total.totalEstados.norte.super_precoce.ciclo }}</td>
+                    <td>{{ total.totalEstados.norte.precoce.venda }} / {{ total.totalEstados.norte.precoce.ciclo }}</td>
+                    <td>{{ total.totalEstados.norte.normal.venda }} / {{ total.totalEstados.norte.normal.ciclo }}</td>
+                    <td>{{ total.totalEstados.norte.milho_variedade.venda }} / {{ total.totalEstados.norte.milho_variedade.ciclo }}</td>
+                  </tr>
+                  <tr>
+                    <td>Exortação</td>
+                    <td>{{ total.totalEstados.exportacao.super_precoce.venda }} / {{ total.totalEstados.exportacao.super_precoce.ciclo }}</td>
+                    <td>{{ total.totalEstados.exportacao.precoce.venda }} / {{ total.totalEstados.exportacao.precoce.ciclo }}</td>
+                    <td>{{ total.totalEstados.exportacao.normal.venda }} / {{ total.totalEstados.exportacao.normal.ciclo }}</td>
+                    <td>{{ total.totalEstados.exportacao.milho_variedade.venda }} / {{ total.totalEstados.exportacao.milho_variedade.ciclo }}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
-        </form>
+          <div class="col-sm-6">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Região</th>
+                    <th>Duplo<br><small>Híbrido</small></th>
+                    <th>Triplo<br><small>Híbrido</small></th>
+                    <th>Simples<br><small>Híbrido</small></th>
+                    <th>Simples Modificado<br><small>Híbrido</small></th>
+                    <th>Milho Variedade</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Sudeste</td>
+                    <td>{{ total.totalEstados.sudeste.duplo_hibrido.venda }} / {{ total.totalEstados.sudeste.duplo_hibrido.ciclo }}</td>
+                    <td>{{ total.totalEstados.sudeste.triplo_hibrido.venda }} / {{ total.totalEstados.sudeste.triplo_hibrido.ciclo }}</td>
+                    <td>{{ total.totalEstados.sudeste.simples_hibrido.venda }} / {{ total.totalEstados.sudeste.simples_hibrido.ciclo }}</td>
+                    <td>{{ total.totalEstados.sudeste.simples_modificado.venda }} / {{ total.totalEstados.sudeste.simples_modificado.ciclo }}</td>
+                    <td>{{ total.totalEstados.sudeste.milho_variedade2.venda }} / {{ total.totalEstados.sudeste.milho_variedade2.ciclo }}</td>
+                  </tr>
+                  <tr>
+                    <td>Sul</td>
+                    <td>{{ total.totalEstados.sul.duplo_hibrido.venda }} / {{ total.totalEstados.sul.duplo_hibrido.ciclo }}</td>
+                    <td>{{ total.totalEstados.sul.triplo_hibrido.venda }} / {{ total.totalEstados.sul.triplo_hibrido.ciclo }}</td>
+                    <td>{{ total.totalEstados.sul.simples_hibrido.venda }} / {{ total.totalEstados.sul.simples_hibrido.ciclo }}</td>
+                    <td>{{ total.totalEstados.sul.simples_modificado.venda }} / {{ total.totalEstados.sul.simples_modificado.ciclo }}</td>
+                    <td>{{ total.totalEstados.sul.milho_variedade2.venda }} / {{ total.totalEstados.sul.milho_variedade2.ciclo }}</td>
+                  </tr>
+                  <tr>
+                    <td>Centroeste</td>
+                    <td>{{ total.totalEstados.centro_oeste.duplo_hibrido.venda }} / {{ total.totalEstados.centro_oeste.duplo_hibrido.ciclo }}</td>
+                    <td>{{ total.totalEstados.centro_oeste.triplo_hibrido.venda }} / {{ total.totalEstados.centro_oeste.triplo_hibrido.ciclo }}</td>
+                    <td>{{ total.totalEstados.centro_oeste.simples_hibrido.venda }} / {{ total.totalEstados.centro_oeste.simples_hibrido.ciclo }}</td>
+                    <td>{{ total.totalEstados.centro_oeste.simples_modificado.venda }} / {{ total.totalEstados.centro_oeste.simples_modificado.ciclo }}</td>
+                    <td>{{ total.totalEstados.centro_oeste.milho_variedade2.venda }} / {{ total.totalEstados.centro_oeste.milho_variedade2.ciclo }}</td>
+                  </tr>
+                  <tr>
+                    <td>Nordeste</td>
+                    <td>{{ total.totalEstados.nordeste.duplo_hibrido.venda }} / {{ total.totalEstados.nordeste.duplo_hibrido.ciclo }}</td>
+                    <td>{{ total.totalEstados.nordeste.triplo_hibrido.venda }} / {{ total.totalEstados.nordeste.triplo_hibrido.ciclo }}</td>
+                    <td>{{ total.totalEstados.nordeste.simples_hibrido.venda }} / {{ total.totalEstados.nordeste.simples_hibrido.ciclo }}</td>
+                    <td>{{ total.totalEstados.nordeste.simples_modificado.venda }} / {{ total.totalEstados.nordeste.simples_modificado.ciclo }}</td>
+                    <td>{{ total.totalEstados.nordeste.milho_variedade2.venda }} / {{ total.totalEstados.nordeste.milho_variedade2.ciclo }}</td>
+                  </tr>
+                  <tr>
+                    <td>Norte</td>
+                    <td>{{ total.totalEstados.norte.duplo_hibrido.venda }} / {{ total.totalEstados.norte.duplo_hibrido.ciclo }}</td>
+                    <td>{{ total.totalEstados.norte.triplo_hibrido.venda }} / {{ total.totalEstados.norte.triplo_hibrido.ciclo }}</td>
+                    <td>{{ total.totalEstados.norte.simples_hibrido.venda }} / {{ total.totalEstados.norte.simples_hibrido.ciclo }}</td>
+                    <td>{{ total.totalEstados.norte.simples_modificado.venda }} / {{ total.totalEstados.norte.simples_modificado.ciclo }}</td>
+                    <td>{{ total.totalEstados.norte.milho_variedade2.venda }} / {{ total.totalEstados.norte.milho_variedade2.ciclo }}</td>
+                  </tr>
+                  <tr>
+                    <td>Exortação</td>
+                    <td>{{ total.totalEstados.exportacao.duplo_hibrido.venda }} / {{ total.totalEstados.exportacao.duplo_hibrido.ciclo }}</td>
+                    <td>{{ total.totalEstados.exportacao.triplo_hibrido.venda }} / {{ total.totalEstados.exportacao.triplo_hibrido.ciclo }}</td>
+                    <td>{{ total.totalEstados.exportacao.simples_hibrido.venda }} / {{ total.totalEstados.exportacao.simples_hibrido.ciclo }}</td>
+                    <td>{{ total.totalEstados.exportacao.simples_modificado.venda }} / {{ total.totalEstados.exportacao.simples_modificado.ciclo }}</td>
+                    <td>{{ total.totalEstados.exportacao.milho_variedade2.venda }} / {{ total.totalEstados.exportacao.milho_variedade2.ciclo }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
