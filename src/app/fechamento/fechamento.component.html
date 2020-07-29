@@ -4,14 +4,14 @@
       <div class="col-sm-12">
         <h2 class="h2" style="padding-top:20px">Fechamento Inverno 2020</h2>
         <form name="frmFechamento">
-          <div class="panel panel-default">
+          <div class="panel panel-default" *ngFor="let item of formData; let i = index">
             <div class="panel-heading panel-heading-divider">
-              Cultivar
+              <a href="javascript:;" (click)="deletaCultivar(i)"><i class="fa fa-trash" aria-hidden="true"></i></a> Cultivar
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label for="form-control-1">Cultivar</label>
-                    <select name="cultivar" id="form-control-1" class="custom-select" [(ngModel)]="formData.cultivar">
+                    <select name="cultivar" id="form-control-1" class="custom-select" [(ngModel)]="formData[i].cultivar" [ngModelOptions]="{standalone: true}">
                       <option value="1">Agrisure TG (GA 21)</option>
                       <option value="2">RR2 (NK 603)</option>
                       <option value="3">Agrisure TL (Bt 11)</option>
@@ -23,7 +23,7 @@
                 <div class="col-sm-5">
                   <div class="form-group">
                     <label for="form-control-2">Nível</label>
-                    <select name="nivel" id="form-control-2" class="custom-select" [(ngModel)]="formData.nivel">
+                    <select name="nivel" id="form-control-2" class="custom-select" [(ngModel)]="formData[i].nivel" [ngModelOptions]="{standalone: true}">
                       <option value="1">Nível I</option>
                       <option value="2">Nível II</option>
                       <option value="3">Nível III</option>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="col-sm-1 text-right">
                   <label for="form-control-2">Total</label>
-                  <h3>123</h3>
+                  <h3>{{ formData[i].pegaTotal() }}</h3>
                 </div>
               </div>
             </div>
@@ -45,7 +45,7 @@
                       <div class="col-sm-12">
                         <div class="form-group switches-stacked">
                           <label class="switch switch-primary">
-                            <input name="venda_giro" type="checkbox" name="switches" class="s-input" checked="checked" [(ngModel)]="formData.venda_giro">
+                            <input name="venda_giro" type="checkbox" name="switches" class="s-input" checked="checked" [(ngModel)]="formData[i].venda_giro" [ngModelOptions]="{standalone: true}">
                             <span class="s-content">
                               <span class="s-track"></span>
                               <span class="s-handle"></span>
@@ -69,11 +69,11 @@
                         <span class="badge badge-pill badge-secondary" data-toggle="tooltip" data-placement="top" title="Apagar linha">i</span>
                       </div>
                     </div>
-                    <div class="estados">
-                      <div class="row linha-estado" *ngFor="let item of arrEstados; let i = index">
+                    <div class="estados" *ngFor="let item of formData[i].estados; let ii = index">
+                      <div class="row linha-estado">
                         <div class="col-sm-6">
                           <div class="form-group">
-                            <select name="estado" id="form-control-4" class="custom-select" [(ngModel)]="arrEstados[i].estado">
+                            <select class="custom-select" [(ngModel)]="formData[i].estados[ii].estado" [ngModelOptions]="{standalone: true}">
                               <option value="1">São Paulo</option>
                               <option value="2">Minas Gerais</option>
                               <option value="3">Rio de Janeiro</option>
@@ -83,22 +83,21 @@
                         </div>
                         <div class="col-sm-2">
                           <div class="form-group">
-                            <input name="venda" id="form-control-5" class="form-control" type="text" [(ngModel)]="arrEstados[i].venda">
+                            <input name="venda" id="form-control-5" class="form-control" type="text"[(ngModel)]="formData[i].estados[ii].venda" [ngModelOptions]="{standalone: true}">
                           </div>
                         </div>
                         <div class="col-sm-2">
                           <div class="form-group">
-                            
-                            <input name="ciclo" id="form-control-6" class="form-control" type="text" [(ngModel)]="arrEstados[i].ciclo">
+                            <input name="ciclo" id="form-control-6" class="form-control" type="text"[(ngModel)]="formData[i].estados[ii].ciclo" [ngModelOptions]="{standalone: true}">
                           </div>
                         </div>
                         <div class="col-sm-2">
-                          <button (click)="apagaLinha(i)" type="button" class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Apagar linha"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                          <button (click)="apagaLinha(i, ii)" type="button" class="btn btn-outline-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Apagar linha"><i class="fa fa-trash" aria-hidden="true"></i></button>
                         </div>
                       </div>
-                      <div class="row">
+                      <div class="row" *ngIf=" ii === formData[i].estados.length-1 ">
                         <div class="col-sm-12">
-                          <button type="button" class="btn btn-outline-primary" (click)="adicionaEstado()">Adicionar Estado</button>
+                          <button type="button" class="btn btn-outline-primary" (click)="adicionaEstado(i)">Adicionar Estado</button>
                         </div>
                       </div>
                     </div>
@@ -112,7 +111,7 @@
               <button (click)="adicionarCultivar()" type="button" class="btn btn-primary">Adicionar Cultivar</button>
             </div>
           </div>
-          <div class="row">
+          <div class="row mt-4">
             <div class="col-sm-6">
               <div class="table-responsive">
                 <table class="table table-striped">
@@ -220,6 +219,7 @@
                     </tr>
                     <tr>
                       <td>Norte</td>
+                      <td>0</td>
                       <td>0</td>
                       <td>0</td>
                       <td>0</td>
