@@ -65,6 +65,21 @@ export class FechamentoComponent implements OnInit {
     console.log(this.pageData.title)
   }
 
+  setVenda(eventValue: any, idxCultivar: number, idxEstado: number) {
+    if ( this.formData[idxCultivar].venda_giro ) {
+      this.formData[idxCultivar].estados[idxEstado].venda = eventValue;
+      this.formData[idxCultivar].estados[idxEstado].ciclo = eventValue;
+    }
+  }
+
+  setVendaGiro(eventValue: any, idxCultivar: number) {
+    if (eventValue) {
+      for (let i = 0; i < this.formData[idxCultivar].estados.length; i++) {
+        this.formData[idxCultivar].estados[i].ciclo = this.formData[idxCultivar].estados[i].venda;
+      }
+    }
+  }
+
   adicionaEstado(idxCultivar: number) {
     this.formData[idxCultivar].estados.push(
       new Estados()
@@ -325,6 +340,28 @@ export class FechamentoComponent implements OnInit {
         }
       },
     }
+    const objCultivar = {
+      1: {
+        'tb_esq': 'super_precoce',
+        'tb_dir': 'simples_hibrido'
+      },
+      2: {
+        'tb_esq': 'precoce',
+        'tb_dir': 'duplo_hibrido'
+      },
+      3: {
+        'tb_esq': 'normal',
+        'tb_dir': 'milho_variedade2'
+      },
+      4: {
+        'tb_esq': 'milho_variedade',
+        'tb_dir': 'triplo_hibrido'
+      },
+      5: {
+        'tb_esq': 'super_precoce',
+        'tb_dir': 'milho_variedade2'
+      }
+    }
 
     for (let i = 0; i < this.formData.length; i++ ) {
       const vCultivar = this.formData[i];
@@ -342,39 +379,16 @@ export class FechamentoComponent implements OnInit {
         if (regiao !== '') {
           // cultivar
           const idCultivar = Number(vCultivar.cultivar);
-          let txtCultivar = '';
+          if (idCultivar > 0) {
+            const txtTbEsq = objCultivar[idCultivar].tb_esq;
+            const txtTbDir = objCultivar[idCultivar].tb_dir;
 
-          if (idCultivar === 1 || idCultivar === 5) {
-            txtCultivar = 'super_precoce';
-          } else if (idCultivar === 2) {
-            txtCultivar = 'precoce';
-          } else if (idCultivar === 3) {
-            txtCultivar = 'normal';
-          } else if (idCultivar === 4) {
-            txtCultivar = 'milho_variedade';
-          }
-          if (txtCultivar !== '') {
-            totalEstados[regiao][txtCultivar].venda += Number(estado.venda);
-            totalEstados[regiao][txtCultivar].ciclo += Number(estado.ciclo);
-          }
-          // ========
+            totalEstados[regiao][txtTbEsq].venda += Number(estado.venda);
+            totalEstados[regiao][txtTbEsq].ciclo += Number(estado.ciclo);
 
-          // nivel
-          const idNivel = Number(vCultivar.nivel);
-          let txtNivel = '';
-
-          if (idNivel === 1) {
-            txtNivel = 'simples_hibrido';
-          } else if (idNivel === 2) {
-            txtNivel = 'duplo_hibrido';
-          } else if (idNivel === 3) {
-            txtNivel = 'triplo_hibrido';
+            totalEstados[regiao][txtTbDir].venda += Number(estado.venda);
+            totalEstados[regiao][txtTbDir].ciclo += Number(estado.ciclo);
           }
-          if (txtCultivar !== '') {
-            totalEstados[regiao][txtNivel].venda += Number(estado.venda);
-            totalEstados[regiao][txtNivel].ciclo += Number(estado.ciclo);
-          }
-          // =====
         }
       }
     }

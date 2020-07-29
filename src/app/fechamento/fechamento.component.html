@@ -45,7 +45,7 @@
                       <div class="col-sm-12">
                         <div class="form-group switches-stacked">
                           <label class="switch switch-primary">
-                            <input name="venda_giro" type="checkbox" name="switches" class="s-input" checked="checked" [(ngModel)]="formData[i].venda_giro" [ngModelOptions]="{standalone: true}">
+                            <input name="venda_giro" type="checkbox" name="switches" class="s-input" checked="checked" (ngModelChange)="setVendaGiro($event, i)" [(ngModel)]="formData[i].venda_giro" [ngModelOptions]="{standalone: true}">
                             <span class="s-content">
                               <span class="s-track"></span>
                               <span class="s-handle"></span>
@@ -83,10 +83,10 @@
                         </div>
                         <div class="col-sm-2">
                           <div class="form-group">
-                            <input name="venda" id="form-control-5" class="form-control" type="text" [(ngModel)]="formData[i].estados[ii].venda" [ngModelOptions]="{standalone: true}">
+                            <input name="venda" id="form-control-5" class="form-control" type="text" (ngModelChange)="setVenda($event, i, ii)" [(ngModel)]="formData[i].estados[ii].venda" [ngModelOptions]="{standalone: true}">
                           </div>
                         </div>
-                        <div class="col-sm-2">
+                        <div class="col-sm-2" *ngIf="!formData[i].venda_giro">
                           <div class="form-group">
                             <input name="ciclo" id="form-control-6" class="form-control" type="text" [(ngModel)]="formData[i].estados[ii].ciclo" [ngModelOptions]="{standalone: true}">
                           </div>
@@ -116,13 +116,14 @@
           <div class="col-sm-6">
             <div class="table-responsive">
               <table class="table table-striped">
+                <caption>Totais Região</caption>
                 <thead>
                   <tr>
-                    <th>Região</th>
-                    <th>Super Precoce<br><small>Híbrido</small></th>
-                    <th>Precoce<br><small>Híbrido</small></th>
-                    <th>Normal<br><small>Híbrido</small></th>
-                    <th>Milho Variedade</th>
+                    <th scope="col">Região</th>
+                    <th scope="col">Super Precoce<br><small>Híbrido</small></th>
+                    <th scope="col">Precoce<br><small>Híbrido</small></th>
+                    <th scope="col">Normal<br><small>Híbrido</small></th>
+                    <th scope="col">Milho Variedade</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -175,14 +176,15 @@
           <div class="col-sm-6">
             <div class="table-responsive">
               <table class="table table-striped">
+                <caption>Totais Região</caption>
                 <thead>
                   <tr>
-                    <th>Região</th>
-                    <th>Duplo<br><small>Híbrido</small></th>
-                    <th>Triplo<br><small>Híbrido</small></th>
-                    <th>Simples<br><small>Híbrido</small></th>
-                    <th>Simples Modificado<br><small>Híbrido</small></th>
-                    <th>Milho Variedade</th>
+                    <th scope="col">Região</th>
+                    <th scope="col">Duplo<br><small>Híbrido</small></th>
+                    <th scope="col">Triplo<br><small>Híbrido</small></th>
+                    <th scope="col">Simples<br><small>Híbrido</small></th>
+                    <th scope="col">Simples Modificado<br><small>Híbrido</small></th>
+                    <th scope="col">Milho Variedade</th>
                   </tr>
                 </thead>
                 <tbody>
