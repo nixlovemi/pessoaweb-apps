@@ -9,7 +9,7 @@ declare var jQuery: any;
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']/*,
-  providers: [{provide: APP_BASE_HREF, useValue: '/pessoaweb/'}]*/
+  providers: [{provide: APP_BASE_HREF, useValue: '/apps'}]*/
 })
 
 
