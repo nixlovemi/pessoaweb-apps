@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {BlankTemplateComponent} from './template/blank-template.component';
 import {LeftNavTemplateComponent} from './template/left-nav-template.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 
@@ -30,6 +29,13 @@ export const routes: Routes = [{
       },
     },
     {
+      path: 'importacao',
+      loadChildren: () => import('./importacao/importacao.module').then(m => m.ImportacaoModule),
+      data: {
+        title: 'Importar XLS'
+      },
+    },
+    {
       path: 'ui-elements',
       loadChildren: () => import('./ui-elements/ui-elements.module').then(m => m.UiElementsModule),
       data: {
@@ -38,7 +44,7 @@ export const routes: Routes = [{
     },
     {
       path: 'forms',
-      loadChildren: () => import('./forms/forms.module').then(m => m.FormsModule),
+      loadChildren: () => import('./importacao/importacao.module').then(m => m.ImportacaoModule),
       data: {
         title: 'Form Page'
       },
