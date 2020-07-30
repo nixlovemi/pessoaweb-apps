@@ -1,0 +1,2 @@
+[Comando para dar build]
+ng build --prod --baseHref=/apps/
