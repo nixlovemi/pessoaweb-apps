@@ -7,7 +7,7 @@ const routes: Routes = [
     pathMatch: 'full',
     component: FechamentoComponent,
     data: {
-      title: 'Forms Works'
+      title: 'Fechamento'
     }
   }
 ];

@@ -7,7 +7,7 @@ const routes: Routes = [
     pathMatch: 'full',
     component: ImportacaoComponent,
     data: {
-      title: 'Importacao Works'
+      title: 'Importar XLS'
     }
   }
 ];

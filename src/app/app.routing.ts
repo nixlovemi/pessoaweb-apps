@@ -17,23 +17,14 @@ export const routes: Routes = [{
     {
       path: 'dashboard',
       loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
-      data: {
-        title: 'Dashboard'
-      },
     },
     {
       path: 'fechamento',
       loadChildren: () => import('./fechamento/fechamento.module').then(m => m.FechamentoModule),
-      data: {
-        title: 'Lançar Fechamento'
-      },
     },
     {
       path: 'importacao',
       loadChildren: () => import('./importacao/importacao.module').then(m => m.ImportacaoModule),
-      data: {
-        title: 'Importar XLS'
-      },
     },
     {
       path: 'ui-elements',
