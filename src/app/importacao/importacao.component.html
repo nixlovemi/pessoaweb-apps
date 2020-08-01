@@ -30,24 +30,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <label class="col-sm-3 control-label">Contém Giro</label>
-                                                <div class="col-sm-9">
-                                                    <div class="switches-stacked">
-                                                        <p> </p>
-                                                        <label class="switch switch-primary">
-                                                            <input type="checkbox" name="switches" class="s-input"
-                                                                checked="checked">
-                                                            <span class="s-content">
-                                                                <span class="s-track"></span>
-                                                                <span class="s-handle"></span>
-                                                            </span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="form-group ">
                                             <div class="row">
                                                 <label class="col-sm-3 control-label"></label>
@@ -72,18 +54,18 @@
                         <tr>
                             <th scope="col">Estado</th>
                             <th scope="col">Cultivar</th>
-                            <th scope="col">Nivel</th>
+                            <th scope="col">Valor</th>
                             <th scope="col">Venda</th>
-                            <th scope="col">Ciclo</th>
+                            <th scope="col">Devolução</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of arrData">
                             <td>{{ item.estado }}</td>
                             <td>{{ item.cultivar }}</td>
-                            <td>{{ item.nivel }}</td>
+                            <td>{{ item.valor }}</td>
                             <td>{{ item.venda }}</td>
-                            <td>{{ item.ciclo }}</td>
+                            <td>{{ item.devolucao }}</td>
                         </tr>
                     </tbody>
                 </table>
