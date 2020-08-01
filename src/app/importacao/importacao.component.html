@@ -47,30 +47,6 @@
                 </div>
             </div>
         </div>
-        <div class="row row-stat" *ngIf="arrData?.length > 0">
-            <div class="col-sm-12">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Cultivar</th>
-                            <th scope="col">Valor</th>
-                            <th scope="col">Venda</th>
-                            <th scope="col">Devolução</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of arrData">
-                            <td>{{ item.estado }}</td>
-                            <td>{{ item.cultivar }}</td>
-                            <td>{{ item.valor }}</td>
-                            <td>{{ item.venda }}</td>
-                            <td>{{ item.devolucao }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
         <div class="row">
             <div class="col-md-4">
                 <h6>Tabela dos Cultivares</h6>
@@ -112,7 +88,31 @@
                 </table>
             </div>
         </div>
-        <div class="row row-stat">
+        <div class="row row-stat" *ngIf="arrData?.length > 0">
+            <div class="col-sm-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Cultivar</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">Venda</th>
+                            <th scope="col">Devolução</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of arrData">
+                            <td>{{ item.estado }}</td>
+                            <td>{{ item.cultivar }}</td>
+                            <td>{{ item.valor }}</td>
+                            <td>{{ item.venda }}</td>
+                            <td>{{ item.devolucao }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row row-stat" *ngIf="tbCiclo?.length > 0">
             <div class="col-sm-12">
                 <h1>Ciclo</h1>
                 <table class="table table-striped">
@@ -135,7 +135,7 @@
                 </table>
             </div>
         </div>
-        <div class="row row-stat">
+        <div class="row row-stat" *ngIf="tbCruzamento?.length > 0">
             <div class="col-sm-12">
                 <h1>Cruzamento</h1>
                 <table class="table table-striped">
@@ -158,7 +158,7 @@
                 </table>
             </div>
         </div>
-        <div class="row row-stat">
+        <div class="row row-stat" *ngIf="tbTecnologia?.length > 0">
             <div class="col-sm-12">
                 <h1>Tipo de Tecnologia</h1>
                 <table class="table table-striped">

@@ -19,7 +19,7 @@ export class ImportacaoComponent implements OnInit {
   public pageData: any;
   public fileEvent: any = null;
   public jsonData: any;
-  public arrData: XlsImport[];
+  public arrData: XlsImport[] = [];
   public fileName: string = '';
   public tbCiclo = [];
   public tbCruzamento = [];
@@ -77,6 +77,8 @@ export class ImportacaoComponent implements OnInit {
           xlsInfo.valor     = xlsLinha[2] ?? '';
           xlsInfo.venda     = xlsLinha[3] ?? '';
           xlsInfo.devolucao = xlsLinha[4] ?? '';
+
+          this.arrData.push(xlsInfo);
 
           // ciclo
           let idxFoundTbCiclo = this.tbCiclo.findIndex(element => element.estado == xlsInfo.estado);
