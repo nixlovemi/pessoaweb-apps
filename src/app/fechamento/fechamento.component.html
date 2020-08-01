@@ -61,7 +61,7 @@
                       <div class="col-sm-2">
                         <label for="form-control-5">Venda <small class="text-muted">(sc)</small></label>
                       </div>
-                      <div class="col-sm-2">
+                      <div class="col-sm-2" *ngIf="!formData[i].venda_giro">
                         <label for="form-control-6">Ciclo <small class="text-muted">(sc)</small></label>
                       </div>
                       <div class="col-sm-2">

@@ -21,13 +21,14 @@ export class ImportacaoComponent implements OnInit {
   public jsonData: any;
   public arrData: XlsImport[];
   public fileName: string = '';
-  public arrCiclo: any[][][];
+  public tbCiclo = [];
+  public tbCruzamento = [];
+  public tbTecnologia = [];
 
   constructor(router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.pageData = <any>this.route.snapshot.data;
-    console.log(this.pageData.title)
   }
 
   onFileChange(evt: any) {
@@ -37,6 +38,13 @@ export class ImportacaoComponent implements OnInit {
   }
 
   postForm() {
+    const tbCultivar = [
+      {tipo: "A", ciclo: "super_precoce", cruzamento: "duplo", tecnologia: "single_bt"},
+      {tipo: "B", ciclo: "precoce", cruzamento: "triplo", tecnologia: "single_rr"},
+      {tipo: "C", ciclo: "super_precoce", cruzamento: "triplo", tecnologia: "estaqueado"},
+      {tipo: "V", ciclo: "variedade", cruzamento: "variedade", tecnologia: "estaqueado"},
+    ];
+
     if (this.fileEvent === null) {
       alert('Escolha o arquivo XLS.')
     } else {
@@ -60,56 +68,94 @@ export class ImportacaoComponent implements OnInit {
         this.jsonData = XLSX.utils.sheet_to_json(ws, { header: 1 });
       };
       reader.onloadend = (e: any) => {
-        this.arrData = [];
-        this.arrCiclo = [];
-        
-        this.arrCiclo['A'] = [];
-        this.arrCiclo['B'] = [];
-        this.arrCiclo['Variedade'] = [];
-
-        this.arrCiclo['A']['Venda'] = 0;
-        this.arrCiclo['B']['Venda'] = 0;
-        this.arrCiclo['Variedade']['Venda'] = 0;
-        this.arrCiclo['A']['Giro'] = 0;
-        this.arrCiclo['B']['Giro'] = 0;
-        this.arrCiclo['Variedade']['Giro'] = 0;
-
-
-
         for (let i = 1; i < this.jsonData.length; i++) {
           const xlsLinha = this.jsonData[i];
           const xlsInfo = new XlsImport();
 
-          xlsInfo.estado = xlsLinha[0] ?? '';
-          xlsInfo.cultivar = xlsLinha[1] ?? '';
-          xlsInfo.valor = xlsLinha[2] ?? '';
-          xlsInfo.venda = xlsLinha[3] ?? '';
+          xlsInfo.estado    = xlsLinha[0] ?? '';
+          xlsInfo.cultivar  = xlsLinha[1] ?? '';
+          xlsInfo.valor     = xlsLinha[2] ?? '';
+          xlsInfo.venda     = xlsLinha[3] ?? '';
           xlsInfo.devolucao = xlsLinha[4] ?? '';
+
+          // ciclo
+          let idxFoundTbCiclo = this.tbCiclo.findIndex(element => element.estado == xlsInfo.estado);
+          if(idxFoundTbCiclo < 0) {
+            this.tbCiclo.push({
+              estado: xlsInfo.estado,
+              super_precoce: {
+                venda: 0,
+                devolucao: 0
+              },
+              precoce: {
+                venda: 0,
+                devolucao: 0
+              },
+              variedade: {
+                venda: 0,
+                devolucao: 0
+              }
+            });
+            idxFoundTbCiclo = this.tbCiclo.findIndex(element => element.estado == xlsInfo.estado);
+          }
+
+          const idxFoundTbCultivar = tbCultivar.findIndex(element => element.tipo == xlsInfo.cultivar);
+          const infoTbCultivar     = tbCultivar[idxFoundTbCultivar];
           
+          this.tbCiclo[idxFoundTbCiclo][infoTbCultivar.ciclo].venda += Number(xlsInfo.venda);
+          this.tbCiclo[idxFoundTbCiclo][infoTbCultivar.ciclo].devolucao += Number(xlsInfo.devolucao);
+          // =====
 
-          /*if(xlsLinha[1]=="A"){
-            if (ciclo['A'][xlsLinha[0]]['Venda'].length){
-              console.log("maior");
-            }else{
-              console.log("menor");
-            }
-            
-            ciclo['A'][xlsLinha[0]]['Venda'] = xlsLinha[3];
-            ciclo['A']['Total']['Venda']  = xlsLinha[3];
-            ciclo['A'][xlsLinha[0]]['Giro'] = xlsLinha[3];
-            ciclo['A']['Total']['Giro']  = xlsLinha[3];
-            ciclo['A']['Total']['Giro']  = xlsLinha[4];
-          }else{
-            ciclo['B'][xlsLinha[0]]['Venda']  = xlsLinha[3];
-            ciclo['B']['Total']['Venda']  = xlsLinha[3];
-            ciclo['B'][xlsLinha[0]]['Giro']  = xlsLinha[3];
-            ciclo['B']['Total']['Giro']  = xlsLinha[3];
-            ciclo['B']['Total']['Giro']  = xlsLinha[4];
-          }*/
+          // cruzamento
+          let idxFoundTbCruzamento = this.tbCruzamento.findIndex(element => element.estado == xlsInfo.estado);
+          if(idxFoundTbCruzamento < 0) {
+            this.tbCruzamento.push({
+              estado: xlsInfo.estado,
+              duplo: {
+                venda: 0,
+                devolucao: 0
+              },
+              triplo: {
+                venda: 0,
+                devolucao: 0
+              },
+              variedade: {
+                venda: 0,
+                devolucao: 0
+              }
+            });
+            idxFoundTbCruzamento = this.tbCruzamento.findIndex(element => element.estado == xlsInfo.estado);
+          }
 
-          this.arrData.push(xlsInfo);
+          this.tbCruzamento[idxFoundTbCruzamento][infoTbCultivar.cruzamento].venda += Number(xlsInfo.venda);
+          this.tbCruzamento[idxFoundTbCruzamento][infoTbCultivar.cruzamento].devolucao += Number(xlsInfo.devolucao);
+          // ==========
+
+          // tecnologia
+          let idxFoundTbTecnologia = this.tbTecnologia.findIndex(element => element.estado == xlsInfo.estado);
+          if(idxFoundTbTecnologia < 0) {
+            this.tbTecnologia.push({
+              estado: xlsInfo.estado,
+              single_bt: {
+                venda: 0,
+                devolucao: 0
+              },
+              single_rr: {
+                venda: 0,
+                devolucao: 0
+              },
+              estaqueado: {
+                venda: 0,
+                devolucao: 0
+              }
+            });
+            idxFoundTbTecnologia = this.tbTecnologia.findIndex(element => element.estado == xlsInfo.estado);
+          }
+
+          this.tbTecnologia[idxFoundTbTecnologia][infoTbCultivar.tecnologia].venda += Number(xlsInfo.venda);
+          this.tbTecnologia[idxFoundTbTecnologia][infoTbCultivar.tecnologia].devolucao += Number(xlsInfo.devolucao);
+          // ==========
         }
-        console.log(this.arrCiclo);
       }
       reader.readAsBinaryString(target.files[0]);
     }
