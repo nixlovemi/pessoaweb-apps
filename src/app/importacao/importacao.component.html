@@ -87,6 +87,83 @@
                     </tbody>
                 </table>
             </div>
+            <div class="col-md-8">
+                <tabset>
+                    
+                    <tab heading="Ciclo">
+                        <div class="row row-stat" *ngIf="tbCiclo?.length > 0">
+                            <div class="col-sm-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Super Precoce</th>
+                                            <th scope="col">Precoce</th>
+                                            <th scope="col">Variedade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of tbCiclo;">
+                                            <td>{{ item.estado }}</td>
+                                            <td>{{ item.super_precoce.venda }} / {{ item.super_precoce.venda - item.super_precoce.devolucao }}</td>
+                                            <td>{{ item.precoce.venda }} / {{ item.precoce.venda - item.precoce.devolucao }}</td>
+                                            <td>{{ item.variedade.venda }} / {{ item.variedade.venda - item.variedade.devolucao }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="Cruzamento">
+                        <div class="row row-stat" *ngIf="tbCruzamento?.length > 0">
+                            <div class="col-sm-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Duplo</th>
+                                            <th scope="col">Triplo</th>
+                                            <th scope="col">Variedade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of tbCruzamento;">
+                                            <td>{{ item.estado }}</td>
+                                            <td>{{ item.duplo.venda }} / {{ item.duplo.venda - item.duplo.devolucao }}</td>
+                                            <td>{{ item.triplo.venda }} / {{ item.triplo.venda - item.triplo.devolucao }}</td>
+                                            <td>{{ item.variedade.venda }} / {{ item.variedade.venda - item.variedade.devolucao }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="Tecnologia">
+                        <div class="row row-stat" *ngIf="tbTecnologia?.length > 0">
+                            <div class="col-sm-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Single BT</th>
+                                            <th scope="col">Single RR</th>
+                                            <th scope="col">Estaqueado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of tbTecnologia;">
+                                            <td>{{ item.estado }}</td>
+                                            <td>{{ item.single_bt.venda }} / {{ item.single_bt.venda - item.single_bt.devolucao }}</td>
+                                            <td>{{ item.single_rr.venda }} / {{ item.single_rr.venda - item.single_rr.devolucao }}</td>
+                                            <td>{{ item.estaqueado.venda }} / {{ item.estaqueado.venda - item.estaqueado.devolucao }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </tab>
+                  </tabset>
+            </div>
         </div>
         <div class="row row-stat" *ngIf="arrData?.length > 0">
             <div class="col-sm-12">
@@ -112,75 +189,9 @@
                 </table>
             </div>
         </div>
-        <div class="row row-stat" *ngIf="tbCiclo?.length > 0">
-            <div class="col-sm-12">
-                <h1>Ciclo</h1>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Super Precoce</th>
-                            <th scope="col">Precoce</th>
-                            <th scope="col">Variedade</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of tbCiclo;">
-                            <td>{{ item.estado }}</td>
-                            <td>{{ item.super_precoce.venda }} / {{ item.super_precoce.venda - item.super_precoce.devolucao }}</td>
-                            <td>{{ item.precoce.venda }} / {{ item.precoce.venda - item.precoce.devolucao }}</td>
-                            <td>{{ item.variedade.venda }} / {{ item.variedade.venda - item.variedade.devolucao }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row row-stat" *ngIf="tbCruzamento?.length > 0">
-            <div class="col-sm-12">
-                <h1>Cruzamento</h1>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Duplo</th>
-                            <th scope="col">Triplo</th>
-                            <th scope="col">Variedade</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of tbCruzamento;">
-                            <td>{{ item.estado }}</td>
-                            <td>{{ item.duplo.venda }} / {{ item.duplo.venda - item.duplo.devolucao }}</td>
-                            <td>{{ item.triplo.venda }} / {{ item.triplo.venda - item.triplo.devolucao }}</td>
-                            <td>{{ item.variedade.venda }} / {{ item.variedade.venda - item.variedade.devolucao }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <div class="row row-stat" *ngIf="tbTecnologia?.length > 0">
-            <div class="col-sm-12">
-                <h1>Tipo de Tecnologia</h1>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Single BT</th>
-                            <th scope="col">Single RR</th>
-                            <th scope="col">Estaqueado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of tbTecnologia;">
-                            <td>{{ item.estado }}</td>
-                            <td>{{ item.single_bt.venda }} / {{ item.single_bt.venda - item.single_bt.devolucao }}</td>
-                            <td>{{ item.single_rr.venda }} / {{ item.single_rr.venda - item.single_rr.devolucao }}</td>
-                            <td>{{ item.estaqueado.venda }} / {{ item.estaqueado.venda - item.estaqueado.devolucao }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        
+        
+        
         
     </div>
 </div>
