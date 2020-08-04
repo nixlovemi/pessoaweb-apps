@@ -100,15 +100,15 @@ span.panel-subtitle {
 }
 
 tabset .nav-tabs .nav-link:focus,tabset .nav-tabs .nav-link:hover {
-    border-color: #1f6b9e #1f6b9e #1f6b9e;
-    background: #5d94b9;
+    border-color: #00a6b6;
+    background: #00a6b6;
 }
  
 tabset .nav-tabs  .nav-link.active, tabset .nav-tabs .nav-link.active:focus tabset .nav-tabs .nav-item.show .nav-link{
     color: #ffffff;
     background-color: #fff;
-    border-color: #1f6b9e;
-    background: #1f6b9e;
+    border-color: #8cbf36;
+    background: #8cbf36;
   }
 
 
@@ -116,7 +116,7 @@ tabset .nav-tabs .nav-link {
     border: 1px solid transparent;
     border-top-right-radius: 10px;
     color: #fff;
-    background: #ff6384;
+    background: #58585b;
     border-left: 1px solid rgba(0, 0, 0, 0.20);
     border-bottom: 1px solid #1f6b9e;
     border-top-left-radius: 10px;

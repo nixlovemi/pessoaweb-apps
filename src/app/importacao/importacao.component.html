@@ -49,7 +49,7 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                <h6>Tabela dos Cultivares</h6>
+                <h3>Tabela dos Cultivares</h3>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -79,10 +79,27 @@
                             <td>Estaqueado</td>
                         </tr>
                         <tr>
-                            <td>Variedade</td>
+                            <td>V</td>
                             <td>Variedade</td>
                             <td>Variedade</td>
                             <td>Estaqueado</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Tabela dos Níveis (Geral)</h5>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nível I</th>
+                            <th scope="col">Nível II</th>
+                            <th scope="col">Nível III</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Até R$ 275</td>
+                            <td>Entre R$ 275 e R$ 350</td>
+                            <td>Mais de R$ 350</td>
                         </tr>
                     </tbody>
                 </table>
@@ -162,11 +179,60 @@
                             </div>
                         </div>
                     </tab>
+                    <tab heading="Nível x Cultivar">
+                        <div class="row row-stat" *ngIf="tbTecnologia?.length > 0">
+                            <div class="col-sm-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Cultivar</th>
+                                            <th scope="col">Nível I</th>
+                                            <th scope="col">Nível II</th>
+                                            <th scope="col">Nível III</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of tbTecnologia;">
+                                            <td>{{ item.estado }}</td>
+                                            <td>{{ item.single_bt.venda }} / {{ item.single_bt.venda - item.single_bt.devolucao }}</td>
+                                            <td>{{ item.single_rr.venda }} / {{ item.single_rr.venda - item.single_rr.devolucao }}</td>
+                                            <td>{{ item.estaqueado.venda }} / {{ item.estaqueado.venda - item.estaqueado.devolucao }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="Nível x Tecnologia">
+                        <div class="row row-stat" *ngIf="tbTecnologia?.length > 0">
+                            <div class="col-sm-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Tipo de Tecnologia</th>
+                                            <th scope="col">Nível I</th>
+                                            <th scope="col">Nível II</th>
+                                            <th scope="col">Nível III</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of tbTecnologia;">
+                                            <td>{{ item.estado }}</td>
+                                            <td>{{ item.single_bt.venda }} / {{ item.single_bt.venda - item.single_bt.devolucao }}</td>
+                                            <td>{{ item.single_rr.venda }} / {{ item.single_rr.venda - item.single_rr.devolucao }}</td>
+                                            <td>{{ item.estaqueado.venda }} / {{ item.estaqueado.venda - item.estaqueado.devolucao }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </tab>
                   </tabset>
             </div>
         </div>
         <div class="row row-stat" *ngIf="arrData?.length > 0">
             <div class="col-sm-12">
+                <h3>Dados Importados</h3>
                 <table class="table table-striped">
                     <thead>
                         <tr>
