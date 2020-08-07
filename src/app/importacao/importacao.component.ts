@@ -20,10 +20,12 @@ export class ImportacaoComponent implements OnInit {
   public fileEvent: any = null;
   public jsonData: any;
   public arrData: XlsImport[] = [];
-  public fileName: string = '';
+  public fileName = '';
   public tbCiclo = [];
   public tbCruzamento = [];
   public tbTecnologia = [];
+  public tbNivelCultivar = [];
+  public tbNivelTecnologia = [];
 
   constructor(router: Router, private route: ActivatedRoute) { }
 
@@ -39,10 +41,10 @@ export class ImportacaoComponent implements OnInit {
 
   postForm() {
     const tbCultivar = [
-      {tipo: "A", ciclo: "super_precoce", cruzamento: "duplo", tecnologia: "single_bt"},
-      {tipo: "B", ciclo: "precoce", cruzamento: "triplo", tecnologia: "single_rr"},
-      {tipo: "C", ciclo: "super_precoce", cruzamento: "triplo", tecnologia: "estaqueado"},
-      {tipo: "V", ciclo: "variedade", cruzamento: "variedade", tecnologia: "estaqueado"},
+      {tipo: 'A', ciclo: 'super_precoce', cruzamento: 'duplo', tecnologia: 'single_bt'},
+      {tipo: 'B', ciclo: 'precoce', cruzamento: 'triplo', tecnologia: 'single_rr'},
+      {tipo: 'C', ciclo: 'super_precoce', cruzamento: 'triplo', tecnologia: 'estaqueado'},
+      {tipo: 'V', ciclo: 'variedade', cruzamento: 'variedade', tecnologia: 'estaqueado'},
     ];
 
     if (this.fileEvent === null) {
@@ -81,8 +83,8 @@ export class ImportacaoComponent implements OnInit {
           this.arrData.push(xlsInfo);
 
           // ciclo
-          let idxFoundTbCiclo = this.tbCiclo.findIndex(element => element.estado == xlsInfo.estado);
-          if(idxFoundTbCiclo < 0) {
+          let idxFoundTbCiclo = this.tbCiclo.findIndex(element => element.estado === xlsInfo.estado);
+          if (idxFoundTbCiclo < 0) {
             this.tbCiclo.push({
               estado: xlsInfo.estado,
               super_precoce: {
@@ -98,19 +100,19 @@ export class ImportacaoComponent implements OnInit {
                 devolucao: 0
               }
             });
-            idxFoundTbCiclo = this.tbCiclo.findIndex(element => element.estado == xlsInfo.estado);
+            idxFoundTbCiclo = this.tbCiclo.findIndex(element => element.estado === xlsInfo.estado);
           }
 
-          const idxFoundTbCultivar = tbCultivar.findIndex(element => element.tipo == xlsInfo.cultivar);
+          const idxFoundTbCultivar = tbCultivar.findIndex(element => element.tipo === xlsInfo.cultivar);
           const infoTbCultivar     = tbCultivar[idxFoundTbCultivar];
-          
+
           this.tbCiclo[idxFoundTbCiclo][infoTbCultivar.ciclo].venda += Number(xlsInfo.venda);
           this.tbCiclo[idxFoundTbCiclo][infoTbCultivar.ciclo].devolucao += Number(xlsInfo.devolucao);
           // =====
 
           // cruzamento
-          let idxFoundTbCruzamento = this.tbCruzamento.findIndex(element => element.estado == xlsInfo.estado);
-          if(idxFoundTbCruzamento < 0) {
+          let idxFoundTbCruzamento = this.tbCruzamento.findIndex(element => element.estado === xlsInfo.estado);
+          if (idxFoundTbCruzamento < 0) {
             this.tbCruzamento.push({
               estado: xlsInfo.estado,
               duplo: {
@@ -126,7 +128,7 @@ export class ImportacaoComponent implements OnInit {
                 devolucao: 0
               }
             });
-            idxFoundTbCruzamento = this.tbCruzamento.findIndex(element => element.estado == xlsInfo.estado);
+            idxFoundTbCruzamento = this.tbCruzamento.findIndex(element => element.estado === xlsInfo.estado);
           }
 
           this.tbCruzamento[idxFoundTbCruzamento][infoTbCultivar.cruzamento].venda += Number(xlsInfo.venda);
@@ -134,8 +136,8 @@ export class ImportacaoComponent implements OnInit {
           // ==========
 
           // tecnologia
-          let idxFoundTbTecnologia = this.tbTecnologia.findIndex(element => element.estado == xlsInfo.estado);
-          if(idxFoundTbTecnologia < 0) {
+          let idxFoundTbTecnologia = this.tbTecnologia.findIndex(element => element.estado === xlsInfo.estado);
+          if (idxFoundTbTecnologia < 0) {
             this.tbTecnologia.push({
               estado: xlsInfo.estado,
               single_bt: {
@@ -151,12 +153,75 @@ export class ImportacaoComponent implements OnInit {
                 devolucao: 0
               }
             });
-            idxFoundTbTecnologia = this.tbTecnologia.findIndex(element => element.estado == xlsInfo.estado);
+            idxFoundTbTecnologia = this.tbTecnologia.findIndex(element => element.estado === xlsInfo.estado);
           }
 
           this.tbTecnologia[idxFoundTbTecnologia][infoTbCultivar.tecnologia].venda += Number(xlsInfo.venda);
           this.tbTecnologia[idxFoundTbTecnologia][infoTbCultivar.tecnologia].devolucao += Number(xlsInfo.devolucao);
           // ==========
+
+          // nivel x cultivar
+          let idxFoundTbNivelCult = this.tbNivelCultivar.findIndex(element => element.estado === xlsInfo.estado);
+          if (idxFoundTbNivelCult < 0) {
+            this.tbNivelCultivar.push({
+              estado: xlsInfo.estado,
+              nivel_1: {
+                venda: 0,
+                devolucao: 0
+              },
+              nivel_2: {
+                venda: 0,
+                devolucao: 0
+              },
+              nivel_3: {
+                venda: 0,
+                devolucao: 0
+              }
+            });
+            idxFoundTbNivelCult = this.tbNivelCultivar.findIndex(element => element.estado === xlsInfo.estado);
+          }
+          let idxNivel = '';
+          if (xlsInfo.valor <= 275) {
+            idxNivel = 'nivel_1';
+          } else if (xlsInfo.valor <= 350) {
+            idxNivel = 'nivel_2';
+          } else {
+            idxNivel = 'nivel_3';
+          }
+          this.tbNivelCultivar[idxFoundTbNivelCult][idxNivel].venda += Number(xlsInfo.venda);
+          this.tbNivelCultivar[idxFoundTbNivelCult][idxNivel].devolucao += Number(xlsInfo.devolucao);
+          // ================
+
+          // nivel x tecnologia
+          let idxFoundTbNivelTec = this.tbNivelTecnologia.findIndex(element => element.tecnologia === infoTbCultivar.tecnologia);
+          if (idxFoundTbNivelTec < 0) {
+            this.tbNivelTecnologia.push({
+              tecnologia: infoTbCultivar.tecnologia,
+              nivel_1: {
+                venda: 0,
+                devolucao: 0
+              },
+              nivel_2: {
+                venda: 0,
+                devolucao: 0
+              },
+              nivel_3: {
+                venda: 0,
+                devolucao: 0
+              }
+            });
+            idxFoundTbNivelTec = this.tbNivelTecnologia.findIndex(element => element.tecnologia === infoTbCultivar.tecnologia);
+          }
+          if (xlsInfo.valor <= 275) {
+            idxNivel = 'nivel_1';
+          } else if (xlsInfo.valor <= 350) {
+            idxNivel = 'nivel_2';
+          } else {
+            idxNivel = 'nivel_3';
+          }
+          this.tbNivelTecnologia[idxFoundTbNivelTec][idxNivel].venda += Number(xlsInfo.venda);
+          this.tbNivelTecnologia[idxFoundTbNivelTec][idxNivel].devolucao += Number(xlsInfo.devolucao);
+          // ==================
         }
       }
       reader.readAsBinaryString(target.files[0]);

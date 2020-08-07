@@ -180,7 +180,7 @@
                         </div>
                     </tab>
                     <tab heading="Nível x Cultivar">
-                        <div class="row row-stat" *ngIf="tbTecnologia?.length > 0">
+                        <div class="row row-stat" *ngIf="tbNivelCultivar?.length > 0">
                             <div class="col-sm-12">
                                 <table class="table table-striped">
                                     <thead>
@@ -192,11 +192,11 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let item of tbTecnologia;">
+                                        <tr *ngFor="let item of tbNivelCultivar;">
                                             <td>{{ item.estado }}</td>
-                                            <td>{{ item.single_bt.venda }} / {{ item.single_bt.venda - item.single_bt.devolucao }}</td>
-                                            <td>{{ item.single_rr.venda }} / {{ item.single_rr.venda - item.single_rr.devolucao }}</td>
-                                            <td>{{ item.estaqueado.venda }} / {{ item.estaqueado.venda - item.estaqueado.devolucao }}</td>
+                                            <td>{{ item.nivel_1.venda }} / {{ item.nivel_1.venda - item.nivel_1.devolucao }}</td>
+                                            <td>{{ item.nivel_2.venda }} / {{ item.nivel_2.venda - item.nivel_2.devolucao }}</td>
+                                            <td>{{ item.nivel_3.venda }} / {{ item.nivel_3.venda - item.nivel_3.devolucao }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -204,7 +204,7 @@
                         </div>
                     </tab>
                     <tab heading="Nível x Tecnologia">
-                        <div class="row row-stat" *ngIf="tbTecnologia?.length > 0">
+                        <div class="row row-stat" *ngIf="tbNivelTecnologia?.length > 0">
                             <div class="col-sm-12">
                                 <table class="table table-striped">
                                     <thead>
@@ -216,18 +216,18 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let item of tbTecnologia;">
-                                            <td>{{ item.estado }}</td>
-                                            <td>{{ item.single_bt.venda }} / {{ item.single_bt.venda - item.single_bt.devolucao }}</td>
-                                            <td>{{ item.single_rr.venda }} / {{ item.single_rr.venda - item.single_rr.devolucao }}</td>
-                                            <td>{{ item.estaqueado.venda }} / {{ item.estaqueado.venda - item.estaqueado.devolucao }}</td>
+                                        <tr *ngFor="let item of tbNivelTecnologia;">
+                                            <td>{{ item.tecnologia }}</td>
+                                            <td>{{ item.nivel_1.venda }} / {{ item.nivel_1.venda - item.nivel_1.devolucao }}</td>
+                                            <td>{{ item.nivel_2.venda }} / {{ item.nivel_2.venda - item.nivel_2.devolucao }}</td>
+                                            <td>{{ item.nivel_3.venda }} / {{ item.nivel_3.venda - item.nivel_3.devolucao }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </tab>
-                  </tabset>
+                </tabset>
             </div>
         </div>
         <div class="row row-stat" *ngIf="arrData?.length > 0">
