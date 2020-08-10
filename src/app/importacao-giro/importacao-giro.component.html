@@ -1,0 +1,319 @@
+<div class="" id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row row-stat">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-heading-divider">Importar dados de Fechamento (GIRO)
+                            <span class="panel-subtitle">Lançar automaticamente os dados para o Fechamento de Inverno 2020</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <label class="col-sm-3 control-label"
+                                                    for="form-control-22">Planilha</label>
+                                                <div class="col-sm-9">
+                                                    <div class="input-group">
+                                                        <input name="arquivo_xls" [(ngModel)]="fileName" readonly class="form-control" type="text" placeholder="Escolher o arquivo">
+                                                        <span class="input-group-btn">
+                                                            <label class="btn btn-primary file-upload-btn">
+                                                                <input class="file-upload-input" type="file" name="file"
+                                                                    (change)="onFileChange($event)" accept=".xls,.xlsx">
+                                                                <i class="icon mdi mdi-upload"></i>
+                                                            </label>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group ">
+                                            <div class="row">
+                                                <label class="col-sm-3 control-label"></label>
+                                                <div class="col-sm-9">
+                                                    <button type="button" class="btn btn-primary"
+                                                        (click)="postForm()">Importar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Tabela dos Cultivares</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Cultivar</th>
+                            <th scope="col">Ciclo</th>
+                            <th scope="col">Cruzamento</th>
+                            <th scope="col">Tecnologia</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>A</td>
+                            <td>Super Precoce</td>
+                            <td>Duplo</td>
+                            <td>Single BT</td>
+                        </tr>
+                        <tr>
+                            <td>B</td>
+                            <td>Precoce</td>
+                            <td>Triplo</td>
+                            <td>Single RR</td>
+                        </tr>
+                        <tr>
+                            <td>C</td>
+                            <td>Super Precoce</td>
+                            <td>Triplo</td>
+                            <td>Estaqueado</td>
+                        </tr>
+                        <tr>
+                            <td>V</td>
+                            <td>Variedade</td>
+                            <td>Variedade</td>
+                            <td>Estaqueado</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h5>Tabela dos Níveis (Geral)</h5>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nível I</th>
+                            <th scope="col">Nível II</th>
+                            <th scope="col">Nível III</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Até R$ 275</td>
+                            <td>Entre R$ 275 e R$ 350</td>
+                            <td>Mais de R$ 350</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-8">
+                <tabset>
+                    
+                    <tab heading="Ciclo">
+                        <div class="row row-stat" *ngIf="tbCiclo?.length > 0">
+                            <div class="col-sm-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Super Precoce</th>
+                                            <th scope="col">Precoce</th>
+                                            <th scope="col">Variedade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of tbCiclo;">
+                                            <td>{{ item.estado }}</td>
+                                            <td>{{ item.super_precoce.venda }} / {{ item.super_precoce.giro }}</td>
+                                            <td>{{ item.precoce.venda }} / {{ item.precoce.giro }}</td>
+                                            <td>{{ item.variedade.venda }} / {{ item.variedade.giro }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="Cruzamento">
+                        <div class="row row-stat" *ngIf="tbCruzamento?.length > 0">
+                            <div class="col-sm-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Duplo</th>
+                                            <th scope="col">Triplo</th>
+                                            <th scope="col">Variedade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of tbCruzamento;">
+                                            <td>{{ item.estado }}</td>
+                                            <td>{{ item.duplo.venda }} / {{ item.duplo.giro }}</td>
+                                            <td>{{ item.triplo.venda }} / {{ item.triplo.giro }}</td>
+                                            <td>{{ item.variedade.venda }} / {{ item.variedade.giro }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="Tecnologia">
+                        <div class="row row-stat" *ngIf="tbTecnologia?.length > 0">
+                            <div class="col-sm-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Estado</th>
+                                            <th scope="col">Single BT</th>
+                                            <th scope="col">Single RR</th>
+                                            <th scope="col">Estaqueado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of tbTecnologia;">
+                                            <td>{{ item.estado }}</td>
+                                            <td>{{ item.single_bt.venda }} / {{ item.single_bt.giro }}</td>
+                                            <td>{{ item.single_rr.venda }} / {{ item.single_rr.giro }}</td>
+                                            <td>{{ item.estaqueado.venda }} / {{ item.estaqueado.giro }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="Nível x Cultivar">
+                        <div class="row row-stat" *ngIf="tbNivelCultivar?.length > 0">
+                            <div class="col-sm-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Cultivar</th>
+                                            <th scope="col">Nível I</th>
+                                            <th scope="col">Nível II</th>
+                                            <th scope="col">Nível III</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of tbNivelCultivar;">
+                                            <td>{{ item.estado }}</td>
+                                            <td>{{ item.nivel_1.venda }} / {{ item.nivel_1.giro }}</td>
+                                            <td>{{ item.nivel_2.venda }} / {{ item.nivel_2.giro }}</td>
+                                            <td>{{ item.nivel_3.venda }} / {{ item.nivel_3.giro }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="Nível x Tecnologia">
+                        <div class="row row-stat" *ngIf="tbNivelTecnologia?.length > 0">
+                            <div class="col-sm-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Tipo de Tecnologia</th>
+                                            <th scope="col">Nível I</th>
+                                            <th scope="col">Nível II</th>
+                                            <th scope="col">Nível III</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of tbNivelTecnologia;">
+                                            <td>{{ item.tecnologia }}</td>
+                                            <td>{{ item.nivel_1.venda }} / {{ item.nivel_1.giro }}</td>
+                                            <td>{{ item.nivel_2.venda }} / {{ item.nivel_2.giro }}</td>
+                                            <td>{{ item.nivel_3.venda }} / {{ item.nivel_3.giro }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </tab>
+                    <tab heading="Valor Médio">
+                        <div class="row row-stat">
+                            <div class="col-sm-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Cultivar</th>
+                                            <th scope="col">Média</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr >
+                                            <td>A</td>
+                                            <td>{{ calcMedia('A') }}</td>
+                                        </tr>
+                                        <tr >
+                                            <td>B</td>
+                                            <td>{{ calcMedia('B') }}</td>
+                                        </tr>
+                                        <tr >
+                                            <td>C</td>
+                                            <td>{{ calcMedia('C') }}</td>
+                                        </tr>
+                                        <tr >
+                                            <td>V</td>
+                                            <td>{{ calcMedia('V') }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Tecnologia</th>
+                                            <th scope="col">Média</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr >
+                                            <td>Single BT</td>
+                                            <td>{{ calcMedia('single_bt') }}</td>
+                                        </tr>
+                                        <tr >
+                                            <td>Single RR</td>
+                                            <td>{{ calcMedia('single_rr') }}</td>
+                                        </tr>
+                                        <tr >
+                                            <td>Estaqueado</td>
+                                            <td>{{ calcMedia('estaqueado') }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </tab>
+                    
+                </tabset>
+                
+            
+            </div>
+        </div>
+        <div class="row row-stat" *ngIf="arrData?.length > 0">
+            <div class="col-sm-12">
+                <h3>Dados Importados</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Cultivar</th>
+                            <th scope="col">Valor</th>
+                            <th scope="col">Venda</th>
+                            <th scope="col">Giro</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of arrData">
+                            <td>{{ item.estado }}</td>
+                            <td>{{ item.cultivar }}</td>
+                            <td>{{ item.valor }}</td>
+                            <td>{{ item.venda }}</td>
+                            <td>{{ item.giro }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        
+        
+        
+    </div>
+</div>

@@ -27,6 +27,10 @@ export const routes: Routes = [{
       loadChildren: () => import('./importacao/importacao.module').then(m => m.ImportacaoModule),
     },
     {
+      path: 'importacao-giro',
+      loadChildren: () => import('./importacao-giro/importacao-giro.module').then(m => m.ImportacaoGiroModule),
+    },
+    {
       path: 'ui-elements',
       loadChildren: () => import('./ui-elements/ui-elements.module').then(m => m.UiElementsModule),
       data: {

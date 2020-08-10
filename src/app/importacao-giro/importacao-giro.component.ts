@@ -6,16 +6,16 @@ class XlsImport {
   public estado: string;
   public cultivar: string;
   public venda: number;
-  public devolucao: number;
+  public giro: number;
   public valor: number;
 }
 
 @Component({
-  selector: 'app-importacao',
-  templateUrl: './importacao.component.html',
-  styleUrls: ['./importacao.component.scss']
+  selector: 'app-importacao-giro',
+  templateUrl: './importacao-giro.component.html',
+  styleUrls: ['./importacao-giro.component.scss']
 })
-export class ImportacaoComponent implements OnInit {
+export class ImportacaoGiroComponent implements OnInit {
   public pageData: any;
   public fileEvent: any = null;
   public jsonData: any;
@@ -116,13 +116,13 @@ export class ImportacaoComponent implements OnInit {
           const xlsLinha = this.jsonData[i];
           const xlsInfo = new XlsImport();
 
-          xlsInfo.estado    = xlsLinha[0] ?? '';
-          xlsInfo.cultivar  = xlsLinha[1] ?? '';
-          xlsInfo.valor     = xlsLinha[2] ?? '';
-          xlsInfo.venda     = xlsLinha[3] ?? '';
-          xlsInfo.devolucao = xlsLinha[4] ?? '';
+          xlsInfo.estado   = xlsLinha[0] ?? '';
+          xlsInfo.cultivar = xlsLinha[1] ?? '';
+          xlsInfo.valor    = xlsLinha[2] ?? '';
+          xlsInfo.venda    = xlsLinha[3] ?? '';
+          xlsInfo.giro     = xlsLinha[4] ?? '';
 
-          if (xlsInfo.estado !== '' && xlsInfo.cultivar !== '' && xlsInfo.valor >= 0 && (xlsInfo.venda >= 0 || xlsInfo.devolucao >= 0)) {
+          if (xlsInfo.estado !== '' && xlsInfo.cultivar !== '' && xlsInfo.valor >= 0 && (xlsInfo.venda >= 0 || xlsInfo.giro >= 0)) {
             this.arrData.push(xlsInfo);
 
             // ciclo
@@ -132,15 +132,15 @@ export class ImportacaoComponent implements OnInit {
                 estado: xlsInfo.estado,
                 super_precoce: {
                   venda: 0,
-                  devolucao: 0
+                  giro: 0
                 },
                 precoce: {
                   venda: 0,
-                  devolucao: 0
+                  giro: 0
                 },
                 variedade: {
                   venda: 0,
-                  devolucao: 0
+                  giro: 0
                 }
               });
               idxFoundTbCiclo = this.tbCiclo.findIndex(element => element.estado === xlsInfo.estado);
@@ -150,7 +150,7 @@ export class ImportacaoComponent implements OnInit {
             const infoTbCultivar     = tbCultivar[idxFoundTbCultivar];
 
             this.tbCiclo[idxFoundTbCiclo][infoTbCultivar.ciclo].venda += Number(xlsInfo.venda);
-            this.tbCiclo[idxFoundTbCiclo][infoTbCultivar.ciclo].devolucao += Number(xlsInfo.devolucao);
+            this.tbCiclo[idxFoundTbCiclo][infoTbCultivar.ciclo].giro  += Number(xlsInfo.giro);
             // =====
 
             // cruzamento
@@ -160,22 +160,22 @@ export class ImportacaoComponent implements OnInit {
                 estado: xlsInfo.estado,
                 duplo: {
                   venda: 0,
-                  devolucao: 0
+                  giro: 0
                 },
                 triplo: {
                   venda: 0,
-                  devolucao: 0
+                  giro: 0
                 },
                 variedade: {
                   venda: 0,
-                  devolucao: 0
+                  giro: 0
                 }
               });
               idxFoundTbCruzamento = this.tbCruzamento.findIndex(element => element.estado === xlsInfo.estado);
             }
 
             this.tbCruzamento[idxFoundTbCruzamento][infoTbCultivar.cruzamento].venda += Number(xlsInfo.venda);
-            this.tbCruzamento[idxFoundTbCruzamento][infoTbCultivar.cruzamento].devolucao += Number(xlsInfo.devolucao);
+            this.tbCruzamento[idxFoundTbCruzamento][infoTbCultivar.cruzamento].giro  += Number(xlsInfo.giro);
             // ==========
 
             // tecnologia
@@ -185,22 +185,22 @@ export class ImportacaoComponent implements OnInit {
                 estado: xlsInfo.estado,
                 single_bt: {
                   venda: 0,
-                  devolucao: 0
+                  giro: 0
                 },
                 single_rr: {
                   venda: 0,
-                  devolucao: 0
+                  giro: 0
                 },
                 estaqueado: {
                   venda: 0,
-                  devolucao: 0
+                  giro: 0
                 }
               });
               idxFoundTbTecnologia = this.tbTecnologia.findIndex(element => element.estado === xlsInfo.estado);
             }
 
             this.tbTecnologia[idxFoundTbTecnologia][infoTbCultivar.tecnologia].venda += Number(xlsInfo.venda);
-            this.tbTecnologia[idxFoundTbTecnologia][infoTbCultivar.tecnologia].devolucao += Number(xlsInfo.devolucao);
+            this.tbTecnologia[idxFoundTbTecnologia][infoTbCultivar.tecnologia].giro  += Number(xlsInfo.giro);
             // ==========
 
             // nivel x cultivar
@@ -210,15 +210,15 @@ export class ImportacaoComponent implements OnInit {
                 estado: xlsInfo.estado,
                 nivel_1: {
                   venda: 0,
-                  devolucao: 0
+                  giro: 0
                 },
                 nivel_2: {
                   venda: 0,
-                  devolucao: 0
+                  giro: 0
                 },
                 nivel_3: {
                   venda: 0,
-                  devolucao: 0
+                  giro: 0
                 }
               });
               idxFoundTbNivelCult = this.tbNivelCultivar.findIndex(element => element.estado === xlsInfo.estado);
@@ -232,7 +232,7 @@ export class ImportacaoComponent implements OnInit {
               idxNivel = 'nivel_3';
             }
             this.tbNivelCultivar[idxFoundTbNivelCult][idxNivel].venda += Number(xlsInfo.venda);
-            this.tbNivelCultivar[idxFoundTbNivelCult][idxNivel].devolucao += Number(xlsInfo.devolucao);
+            this.tbNivelCultivar[idxFoundTbNivelCult][idxNivel].giro  += Number(xlsInfo.giro);
             // ================
 
             // nivel x tecnologia
@@ -242,15 +242,15 @@ export class ImportacaoComponent implements OnInit {
                 tecnologia: infoTbCultivar.tecnologia,
                 nivel_1: {
                   venda: 0,
-                  devolucao: 0
+                  giro: 0
                 },
                 nivel_2: {
                   venda: 0,
-                  devolucao: 0
+                  giro: 0
                 },
                 nivel_3: {
                   venda: 0,
-                  devolucao: 0
+                  giro: 0
                 }
               });
               idxFoundTbNivelTec = this.tbNivelTecnologia.findIndex(element => element.tecnologia === infoTbCultivar.tecnologia);
@@ -263,7 +263,7 @@ export class ImportacaoComponent implements OnInit {
               idxNivel = 'nivel_3';
             }
             this.tbNivelTecnologia[idxFoundTbNivelTec][idxNivel].venda += Number(xlsInfo.venda);
-            this.tbNivelTecnologia[idxFoundTbNivelTec][idxNivel].devolucao += Number(xlsInfo.devolucao);
+            this.tbNivelTecnologia[idxFoundTbNivelTec][idxNivel].giro  += Number(xlsInfo.giro);
             // ==================
 
             this.tbMedia[infoTbCultivar.tipo].total += Number(xlsInfo.valor);
