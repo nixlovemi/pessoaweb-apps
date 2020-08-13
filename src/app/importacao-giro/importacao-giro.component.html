@@ -47,7 +47,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <h3>Tabela dos Cultivares</h3>
                 <table class="table table-striped">
                     <thead>
@@ -103,9 +103,10 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-md-8">
+        </div>
+        <div class="row">
+            <div class="col-md-12">
                 <tabset>
-                    
                     <tab heading="Ciclo">
                         <div class="row row-stat" *ngIf="tbCiclo?.length > 0">
                             <div class="col-sm-12">
@@ -280,10 +281,7 @@
                             </div>
                         </div>
                     </tab>
-                    
                 </tabset>
-                
-            
             </div>
         </div>
         <div class="row row-stat" *ngIf="arrData?.length > 0">
