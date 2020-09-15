@@ -74,6 +74,7 @@
                 </div><!-- panel -->
             </div><!-- col-md-4 -->
         </div>
+        <!--
         <div class="row">
             <div class="col-md-12 col-lg-6">
                 <div class="white-box">
@@ -83,6 +84,78 @@
             <div class="col-md-12 col-lg-6">
                 <div class="white-box">
                     <app-line-chart></app-line-chart>
+                </div>
+            </div>
+        </div>
+        -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="white-box">
+                    <h2>Preço Médio Praticado Verão 2019</h2>
+                    <canvas baseChart
+                        [datasets]="lineChartData"
+                        [labels]="lineChartLabels"
+                        [options]="lineChartOptions"
+                        [colors]="lineChartColors"
+                        [legend]="lineChartLegend"
+                        [chartType]="lineChartType">
+                    </canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="white-box">
+                    <h2>Parcial Verão 2019</h2>
+                    <canvas baseChart
+                        [datasets]="barChartData"
+                        [labels]="barChartLabels"
+                        [options]="barChartOptions"
+                        [colors]="barChartColors"
+                        [legend]="barChartLegend"
+                        [chartType]="barChartType">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="white-box">
+                    <h2>Inverno 20 São Paulo</h2>
+                    <canvas baseChart
+                        [datasets]="pieChartData"
+                        [labels]="pieChartLabels"
+                        [options]="pieChartOptions"
+                        [legend]="pieChartLegend"
+                        [chartType]="pieChartType">
+                    </canvas>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="white-box">
+                    <h2>Bt Puro x Bt RR x Não BT</h2>
+                    <canvas baseChart
+                        [datasets]="bar2ChartData"
+                        [labels]="bar2ChartLabels"
+                        [options]="bar2ChartOptions"
+                        [colors]="bar2ChartColors"
+                        [legend]="bar2ChartLegend"
+                        [chartType]="bar2ChartType">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="white-box">
+                    <h2>Totais Estaduais</h2>
+                    <canvas baseChart
+                        [datasets]="bar3ChartData"
+                        [labels]="bar3ChartLabels"
+                        [options]="bar3ChartOptions"
+                        [legend]="bar3ChartLegend"
+                        [chartType]="bar3ChartType">
+                    </canvas>
                 </div>
             </div>
         </div>
