@@ -56,7 +56,8 @@ export class ImportacaoGiroComponent implements OnInit {
       {tipo: 'A', ciclo: 'super_precoce', cruzamento: 'duplo', tecnologia: 'single_bt'},
       {tipo: 'B', ciclo: 'precoce', cruzamento: 'triplo', tecnologia: 'single_rr'},
       {tipo: 'C', ciclo: 'super_precoce', cruzamento: 'triplo', tecnologia: 'estaqueado'},
-      {tipo: 'V', ciclo: 'variedade', cruzamento: 'variedade', tecnologia: 'estaqueado'},
+      {tipo: 'D', ciclo: 'precoce', cruzamento: 'simples', tecnologia: 'estaqueado'},
+      /*{tipo: 'V', ciclo: 'variedade', cruzamento: 'variedade', tecnologia: 'estaqueado'},*/
     ];
     this.tbMedia = {
       A : {
@@ -71,7 +72,11 @@ export class ImportacaoGiroComponent implements OnInit {
         total: 0,
         qtde: 0
       },
-      V : {
+      /*V : {
+        total: 0,
+        qtde: 0
+      },*/
+      D : {
         total: 0,
         qtde: 0
       },
@@ -166,7 +171,7 @@ export class ImportacaoGiroComponent implements OnInit {
                   venda: 0,
                   giro: 0
                 },
-                variedade: {
+                simples: {
                   venda: 0,
                   giro: 0
                 }

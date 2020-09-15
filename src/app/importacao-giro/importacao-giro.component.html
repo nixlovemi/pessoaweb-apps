@@ -78,11 +78,17 @@
                             <td>Estaqueado</td>
                         </tr>
                         <tr>
+                            <td>D</td>
+                            <td>Precoce</td>
+                            <td>Simples</td>
+                            <td>Estaqueado</td>
+                        </tr>
+                        <!--<tr>
                             <td>V</td>
                             <td>Variedade</td>
                             <td>Variedade</td>
                             <td>Estaqueado</td>
-                        </tr>
+                        </tr>-->
                     </tbody>
                 </table>
                 <h5>Tabela dos Níveis (Geral)</h5>
@@ -116,7 +122,7 @@
                                             <th scope="col">Estado</th>
                                             <th scope="col">Super Precoce</th>
                                             <th scope="col">Precoce</th>
-                                            <th scope="col">Variedade</th>
+                                            <!--<th scope="col">Variedade</th>-->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -124,7 +130,7 @@
                                             <td>{{ item.estado }}</td>
                                             <td>{{ item.super_precoce.venda }} / {{ item.super_precoce.giro }}</td>
                                             <td>{{ item.precoce.venda }} / {{ item.precoce.giro }}</td>
-                                            <td>{{ item.variedade.venda }} / {{ item.variedade.giro }}</td>
+                                            <!--<td>{{ item.variedade.venda }} / {{ item.variedade.giro }}</td>-->
                                         </tr>
                                     </tbody>
                                 </table>
@@ -140,7 +146,7 @@
                                             <th scope="col">Estado</th>
                                             <th scope="col">Duplo</th>
                                             <th scope="col">Triplo</th>
-                                            <th scope="col">Variedade</th>
+                                            <th scope="col">Simples</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -148,7 +154,7 @@
                                             <td>{{ item.estado }}</td>
                                             <td>{{ item.duplo.venda }} / {{ item.duplo.giro }}</td>
                                             <td>{{ item.triplo.venda }} / {{ item.triplo.giro }}</td>
-                                            <td>{{ item.variedade.venda }} / {{ item.variedade.giro }}</td>
+                                            <td>{{ item.simples.venda }} / {{ item.simples.giro }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -251,8 +257,8 @@
                                             <td>{{ calcMedia('C') }}</td>
                                         </tr>
                                         <tr >
-                                            <td>V</td>
-                                            <td>{{ calcMedia('V') }}</td>
+                                            <td>D</td>
+                                            <td>{{ calcMedia('D') }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -309,9 +315,5 @@
                 </table>
             </div>
         </div>
-        
-        
-        
-        
     </div>
 </div>

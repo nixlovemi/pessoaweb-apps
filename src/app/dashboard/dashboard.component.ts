@@ -197,7 +197,7 @@ export class DashboardComponent implements OnInit {
       }]
     },
   };
-  public pieChartLegend = true;
+  public pieChartLegend = false;
   public pieChartType = 'pie';
   // =================
 
